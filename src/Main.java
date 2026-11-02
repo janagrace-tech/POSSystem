@@ -1,15 +1,37 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Create a hidden parent frame so the popup stays on top
+        JFrame frame = new JFrame();
+        frame.setAlwaysOnTop(true);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        // Show a test pop-up input form
+        String input = JOptionPane.showInputDialog(
+                frame,
+                "GitHub Sync Test:\nEnter your name or a test message:",
+                "POS System - Co-Editing Test",
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        // If user entered text, display a confirmation dialog
+        if (input != null && !input.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Success! Hello, " + input + "!\nCo-editing test is working properly.",
+                    "Test Complete",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Test window closed without input.",
+                    "Notice",
+                    JOptionPane.WARNING_MESSAGE
+            );
         }
+
+        System.exit(0);
     }
 }
